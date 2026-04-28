@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>handler practice</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        input {
+            display: block;
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>1. 클릭 이벤트 테스트</h1>
+        <button id="clickButton">클릭하세요!</button>
+    </section>
+
+    <script>
+        document.getElementById("clickButton").addEventListener("click", function() {
+            alert("버튼이 클릭되었습니다!");
+        });
+    </script>
+
+    <section>
+        <h1>2. 실시간 입력 감지</h1>
+        <input type="text" id="liveInput" placeholder="여기에 타이핑 해보세요">
+        <div id="output">여기에 입력한 내용이 표시됩니다.</div>
+    </section>
+
+   <section>
+       <h1>3. 폼 제출 (FormData)</h1>
+       <form id="myForm">
+            <input type="text" name="username" placeholder="이름">
+            <input type="email" name="email" placeholder="이메일">
+            <button type="submit">데이터 제출</button>     
+        </form>
+   </section>
+
+</body>
+<script>
+    const clickBtn = document.getElementById("clickButton");
+    clickBtn.addEventListener("click", function() {
+        alert("버튼이 클릭되었습니다!");
+    });
+
+    const liveInput = document.getElementById("liveInput");
+    const output = document.getElementById("output");
+
+    liveInput.addEventListener("input", function () {
+    output.textContent = liveInput.value;
+    console.log("현재 입력값:", liveInput.value);
+    });
+
+    const myForm = document.getElementById("myForm");
+
+    myForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // 기본 제출 동작 방지
+        const formData = new FormData(myForm);
+
+        const username = formData.get("username");
+        const email = formData.get("email");
+
+        console.log("이름:", username);
+        console.log("이메일:", email);
+        alert("제출 완료!\n이름: " + username + "\n이메일: " + email);
+    });
+
+</script>
+</html>
